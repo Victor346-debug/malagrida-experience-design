@@ -28,12 +28,12 @@ import drink1 from "@/assets/drink1.jpg";
 import drink2 from "@/assets/drink2.jpg";
 import drink3 from "@/assets/drink3.jpg";
 import gal1 from "@/assets/gallery1.jpg";
-import gal2 from "@/assets/gallery2.jpg";
 import gal3 from "@/assets/gallery3.jpg";
 import gal4 from "@/assets/gallery4.jpg";
-import gal5 from "@/assets/gallery5.jpg";
-import gal6 from "@/assets/gallery6.jpg";
 import ambienteVideo from "@/assets/malagrida-ambiente.mp4.asset.json";
+import galPratoCamarao from "@/assets/galeria-prato-camarao.jpg.asset.json";
+import galDrinkRosa from "@/assets/galeria-drink-rosa.jpg.asset.json";
+import galBurgerFritas from "@/assets/galeria-burger-fritas.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -476,11 +476,11 @@ function Drinks() {
 function Gallery() {
   const items = [
     { src: gal1, alt: "Restaurante ao pôr do sol", span: "row-span-2" },
-    { src: gal2, alt: "Brinde com drinks autorais", span: "" },
+    { src: galPratoCamarao.url, alt: "Camarões crocantes com purê e glaze", span: "" },
     { src: gal3, alt: "Chef finalizando prato", span: "" },
     { src: gal4, alt: "Casal jantando à luz de velas", span: "row-span-2" },
-    { src: gal5, alt: "Frutas e ervas tropicais", span: "" },
-    { src: gal6, alt: "Grelha a fogo", span: "" },
+    { src: galDrinkRosa.url, alt: "Drink Rosa com twist de limão", span: "" },
+    { src: galBurgerFritas.url, alt: "Burger artesanal com fritas", span: "" },
   ];
   const [lightbox, setLightbox] = useState<number | null>(null);
 
