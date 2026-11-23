@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Menu,
   X,
@@ -33,6 +33,7 @@ import gal3 from "@/assets/gallery3.jpg";
 import gal4 from "@/assets/gallery4.jpg";
 import gal5 from "@/assets/gallery5.jpg";
 import gal6 from "@/assets/gallery6.jpg";
+import ambienteVideo from "@/assets/malagrida-ambiente.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -235,18 +236,40 @@ function Hero() {
 
 /* ---------------- ABOUT ---------------- */
 function About() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (reduce.matches) {
+        video.pause();
+      } else {
+        video.play().catch(() => {});
+      }
+    };
+    apply();
+    reduce.addEventListener("change", apply);
+    return () => reduce.removeEventListener("change", apply);
+  }, []);
+
   return (
     <section id="sobre" className="py-24 lg:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div className="relative">
-          <div className="hover-zoom rounded-2xl overflow-hidden shadow-luxe">
-            <img
-              src={aboutImg}
-              alt="Salão do Malagrida Restobar"
-              width={1280}
-              height={1280}
-              loading="lazy"
-              className="w-full h-[520px] object-cover"
+          <div className="rounded-2xl overflow-hidden shadow-luxe h-[420px] sm:h-[520px] lg:h-[600px]">
+            <video
+              ref={videoRef}
+              src={ambienteVideo.url}
+              poster={aboutImg}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label="Ambiente do Malagrida Restobar em movimento"
+              className="h-full w-full object-cover"
             />
           </div>
           <div className="hidden lg:block absolute -bottom-8 -right-8 bg-primary text-primary-foreground rounded-2xl p-6 shadow-luxe max-w-[220px]">
