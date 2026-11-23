@@ -34,6 +34,8 @@ import ambienteVideo from "@/assets/malagrida-ambiente.mp4.asset.json";
 import galPratoCamarao from "@/assets/galeria-prato-camarao.jpg.asset.json";
 import galDrinkRosa from "@/assets/galeria-drink-rosa.jpg.asset.json";
 import galBurgerFritas from "@/assets/galeria-burger-fritas.jpg.asset.json";
+import logoIvory from "@/assets/logo-malagrida-ivory.png.asset.json";
+import shareCard from "@/assets/malagrida-card.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,6 +51,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Boa comida, drinks especiais e momentos inesquecíveis em Boipeba.",
       },
+      { property: "og:image", content: shareCard.url },
+      { name: "twitter:image", content: shareCard.url },
     ],
   }),
   component: Index,
@@ -107,11 +111,14 @@ function Header() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 text-ivory">
-          <span className="font-display text-2xl tracking-wide">Malagrida</span>
-          <span className="hidden sm:inline text-[10px] tracking-[0.3em] uppercase text-gold mt-2">
-            Restobar
-          </span>
+        <a href="#home" className="flex items-center" aria-label="Malagrida Restobar">
+          <img
+            src={logoIvory.url}
+            alt="Malagrida Restobar"
+            width={919}
+            height={418}
+            className="h-9 sm:h-11 w-auto"
+          />
         </a>
 
         <nav className="hidden lg:flex items-center gap-9">
