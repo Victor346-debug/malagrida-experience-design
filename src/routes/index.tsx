@@ -556,8 +556,15 @@ function Testimonials() {
     },
   ];
   const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
   const next = () => setIdx((i) => (i + 1) % items.length);
   const prev = () => setIdx((i) => (i - 1 + items.length) % items.length);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => setIdx((i) => (i + 1) % items.length), 3500);
+    return () => clearInterval(t);
+  }, [paused, idx, items.length]);
 
   return (
     <section className="py-24 lg:py-32 bg-secondary/40">
@@ -569,18 +576,26 @@ function Testimonials() {
         </h2>
 
         <div className="mt-14 relative">
-          <div className="rounded-2xl bg-card border border-border p-8 lg:p-14 shadow-luxe">
-            <div className="flex justify-center gap-1 text-gold">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} size={18} fill="currentColor" strokeWidth={0} />
-              ))}
-            </div>
-            <p className="mt-7 font-display text-2xl lg:text-3xl leading-snug text-balance italic">
-              “{items[idx].text}”
-            </p>
-            <div className="mt-8">
-              <p className="font-medium">{items[idx].name}</p>
-              <p className="text-sm text-muted-foreground">{items[idx].role}</p>
+          <div
+            className="rounded-2xl bg-card border border-border p-8 lg:p-14 shadow-luxe"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onTouchStart={() => setPaused(true)}
+            onTouchEnd={() => setPaused(false)}
+          >
+            <div key={idx} className="quote-in">
+              <div className="flex justify-center gap-1 text-gold">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={18} fill="currentColor" strokeWidth={0} />
+                ))}
+              </div>
+              <p className="mt-7 font-display text-2xl lg:text-3xl leading-snug text-balance italic">
+                “{items[idx].text}”
+              </p>
+              <div className="mt-8">
+                <p className="font-medium">{items[idx].name}</p>
+                <p className="text-sm text-muted-foreground">{items[idx].role}</p>
+              </div>
             </div>
           </div>
 
