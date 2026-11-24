@@ -30,12 +30,12 @@ import drink3 from "@/assets/drink3.jpg";
 import gal1 from "@/assets/gallery1.jpg";
 import gal3 from "@/assets/gallery3.jpg";
 import gal4 from "@/assets/gallery4.jpg";
-import ambienteVideo from "@/assets/malagrida-ambiente.mp4.asset.json";
-import galPratoCamarao from "@/assets/galeria-prato-camarao.jpg.asset.json";
-import galDrinkRosa from "@/assets/galeria-drink-rosa.jpg.asset.json";
-import galBurgerFritas from "@/assets/galeria-burger-fritas.jpg.asset.json";
-import logoIvory from "@/assets/logo-malagrida-ivory.png.asset.json";
-import shareCard from "@/assets/malagrida-card.png.asset.json";
+const ambienteVideo = { url: "/media/malagrida-ambiente.mp4" };
+const galPratoCamarao = { url: "/media/galeria-prato-camarao.jpg" };
+const galDrinkRosa = { url: "/media/galeria-drink-rosa.jpg" };
+const galBurgerFritas = { url: "/media/galeria-burger-fritas.jpg" };
+const logoIvory = { url: "/media/logo-malagrida-ivory.png" };
+const shareCard = { url: "/media/malagrida-card.png" };
 
 export const Route = createFileRoute("/")({
   head: () => ({
